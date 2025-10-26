@@ -1,0 +1,14 @@
+{
+	"node": "n8n-nodes-base.markdownToNotion",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Data Transformation"],
+	"resources": {
+		"credentialDocumentation": [],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/tryfabric/martian"
+			}
+		]
+	}
+}

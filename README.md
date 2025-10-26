@@ -1,247 +1,157 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n-nodes-markdown-to-notion
 
-# n8n-nodes-starter
+This is an n8n community node that converts Markdown to Notion blocks using the [Martian library](https://github.com/tryfabric/martian).
 
-This starter repository helps you build custom integrations for [n8n](https://n8n.io). It includes example nodes, credentials, the node linter, and all the tooling you need to get started.
+[n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
-## Quick Start
+## Installation
 
-> [!TIP]
-> **New to building n8n nodes?** The fastest way to get started is with `npm create @n8n/node`. This command scaffolds a complete node package for you using the [@n8n/node-cli](https://www.npmjs.com/package/@n8n/node-cli).
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
 
-**To create a new node package from scratch:**
+### Manual Installation
 
-```bash
-npm create @n8n/node
-```
-
-**Already using this starter? Start developing with:**
+To get started locally:
 
 ```bash
-npm run dev
-```
+# Clone the repository
+git clone https://github.com/RomainJeff/n8n-nodes-markdown-to-notion.git
+cd n8n-nodes-markdown-to-notion
 
-This starts n8n with your nodes loaded and hot reload enabled.
-
-## What's Included
-
-This starter repository includes two example nodes to learn from:
-
-- **[Example Node](nodes/Example/)** - A simple starter node that shows the basic structure with a custom `execute` method
-- **[GitHub Issues Node](nodes/GithubIssues/)** - A complete, production-ready example built using the **declarative style**:
-  - **Low-code approach** - Define operations declaratively without writing request logic
-  - Multiple resources (Issues, Comments)
-  - Multiple operations (Get, Get All, Create)
-  - Two authentication methods (OAuth2 and Personal Access Token)
-  - List search functionality for dynamic dropdowns
-  - Proper error handling and typing
-  - Ideal for HTTP API-based integrations
-
-> [!TIP]
-> The declarative/low-code style (used in GitHub Issues) is the recommended approach for building nodes that interact with HTTP APIs. It significantly reduces boilerplate code and handles requests automatically.
-
-Browse these examples to understand both approaches, then modify them or create your own.
-
-## Finding Inspiration
-
-Looking for more examples? Check out these resources:
-
-- **[npm Community Nodes](https://www.npmjs.com/search?q=keywords:n8n-community-node-package)** - Browse thousands of community-built nodes on npm using the `n8n-community-node-package` tag
-- **[n8n Built-in Nodes](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/nodes)** - Study the source code of n8n's official nodes for production-ready patterns and best practices
-- **[n8n Credentials](https://github.com/n8n-io/n8n/tree/master/packages/nodes-base/credentials)** - See how authentication is implemented for various services
-
-These are excellent resources to understand how to structure your nodes, handle different API patterns, and implement advanced features.
-
-## Prerequisites
-
-Before you begin, install the following on your development machine:
-
-### Required
-
-- **[Node.js](https://nodejs.org/)** (v22 or higher) and npm
-  - Linux/Mac/WSL: Install via [nvm](https://github.com/nvm-sh/nvm)
-  - Windows: Follow [Microsoft's NodeJS guide](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows)
-- **[git](https://git-scm.com/downloads)**
-
-### Recommended
-
-- Follow n8n's [development environment setup guide](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/)
-
-> [!NOTE]
-> The `@n8n/node-cli` is included as a dev dependency and will be installed automatically when you run `npm install`. The CLI includes n8n for local development, so you don't need to install n8n globally.
-
-## Getting Started with this Starter
-
-Follow these steps to create your own n8n community node package:
-
-### 1. Create Your Repository
-
-[Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template, then clone it:
-
-```bash
-git clone https://github.com/<your-organization>/<your-repo-name>.git
-cd <your-repo-name>
-```
-
-### 2. Install Dependencies
-
-```bash
+# Install dependencies
 npm install
-```
 
-This installs all required dependencies including the `@n8n/node-cli`.
+# Build the node
+npm run build
 
-### 3. Explore the Examples
-
-Browse the example nodes in [nodes/](nodes/) and [credentials/](credentials/) to understand the structure:
-
-- Start with [nodes/Example/](nodes/Example/) for a basic node
-- Study [nodes/GithubIssues/](nodes/GithubIssues/) for a real-world implementation
-
-### 4. Build Your Node
-
-Edit the example nodes to fit your use case, or create new node files by copying the structure from [nodes/Example/](nodes/Example/).
-
-> [!TIP]
-> If you want to scaffold a completely new node package, use `npm create @n8n/node` to start fresh with the CLI's interactive generator.
-
-### 5. Configure Your Package
-
-Update `package.json` with your details:
-
-- `name` - Your package name (must start with `n8n-nodes-`)
-- `author` - Your name and email
-- `repository` - Your repository URL
-- `description` - What your node does
-
-Make sure your node is registered in the `n8n.nodes` array.
-
-### 6. Develop and Test Locally
-
-Start n8n with your node loaded:
-
-```bash
+# Start n8n with the node loaded
 npm run dev
 ```
 
-This command runs `n8n-node dev` which:
+## Operations
 
-- Builds your node with watch mode
-- Starts n8n with your node available
-- Automatically rebuilds when you make changes
-- Opens n8n in your browser (usually http://localhost:5678)
+The **Markdown to Notion** node provides a single operation to convert Markdown content into Notion blocks.
 
-You can now test your node in n8n workflows!
+### Convert Markdown to Notion Blocks
 
-> [!NOTE]
-> Learn more about CLI commands in the [@n8n/node-cli documentation](https://www.npmjs.com/package/@n8n/node-cli).
+Transforms Markdown text (including GitHub Flavored Markdown) into Notion API-compatible block objects.
 
-### 7. Lint Your Code
+**Features:**
+- Supports headings, paragraphs, lists, code blocks, tables, and more
+- Handles inline formatting (bold, italic, strikethrough, inline code, links)
+- Processes GitHub Flavored Markdown (GFM) extensions
+- Configurable options for image handling and content truncation
 
-Check for errors:
+## Node Parameters
 
-```bash
-npm run lint
+### Markdown Source
+Choose where to get the Markdown content from:
+- **Input Field**: Read Markdown from a field in the input data
+- **Direct Input**: Paste or type Markdown content directly
+
+### Markdown Field
+*Only visible when "Input Field" is selected*
+
+The name of the field containing the Markdown content (e.g., `markdown`, `content`, `body`).
+
+### Markdown Content
+*Only visible when "Direct Input" is selected*
+
+The Markdown text to convert to Notion blocks. Supports multi-line input.
+
+### Output Field Name
+The field name where the converted Notion blocks will be stored. Default: `notionBlocks`
+
+### Strict Image URLs
+Whether to render invalid image URLs as text instead of image blocks. Default: `false`
+
+### Truncate Long Content
+Automatically truncate content that exceeds Notion's API limits. Default: `true`
+
+## Usage Example
+
+### Basic Conversion
+
+1. Add the **Markdown to Notion** node to your workflow
+2. Choose "Direct Input" as the Markdown Source
+3. Enter your Markdown content:
+   ```markdown
+   # Welcome to n8n
+
+   This is a **bold** statement with *italic* text.
+
+   - Item 1
+   - Item 2
+   - Item 3
+   ```
+4. The node outputs Notion blocks in the `notionBlocks` field
+
+### With Input Data
+
+If you have Markdown content from a previous node:
+
+1. Set Markdown Source to "Input Field"
+2. Enter the field name containing your Markdown (e.g., `body`)
+3. The node will convert the Markdown and add the `notionBlocks` field to your data
+
+### Integration with Notion API
+
+Use this node before calling the Notion API to create or update pages:
+
+```
+[Trigger] → [Get Markdown Content] → [Markdown to Notion] → [Notion API: Create Page]
 ```
 
-Auto-fix issues when possible:
+The output `notionBlocks` array can be used directly as the `children` parameter in Notion's API.
 
-```bash
-npm run lint:fix
-```
+## Supported Markdown Features
 
-### 8. Build for Production
+- **Headings** (H1-H3)
+- **Paragraphs** with inline formatting
+- **Lists** (ordered and unordered)
+- **Code blocks** with syntax highlighting
+- **Tables**
+- **Block quotes**
+- **Images** (with URL validation option)
+- **Inline formatting**: bold, italic, strikethrough, inline code, links
+- **GitHub Flavored Markdown** extensions
 
-When ready to publish:
+## Compatibility
 
-```bash
-npm run build
-```
-
-This compiles your TypeScript code to the `dist/` folder.
-
-### 9. Prepare for Publishing
-
-Before publishing:
-
-1. **Update documentation**: Replace this README with your node's documentation. Use [README_TEMPLATE.md](README_TEMPLATE.md) as a starting point.
-2. **Update the LICENSE**: Add your details to the [LICENSE](LICENSE.md) file.
-3. **Test thoroughly**: Ensure your node works in different scenarios.
-
-### 10. Publish to npm
-
-Publish your package to make it available to the n8n community:
-
-```bash
-npm publish
-```
-
-Learn more about [publishing to npm](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
-
-### 11. Submit for Verification (Optional)
-
-Get your node verified for n8n Cloud:
-
-1. Ensure your node meets the [requirements](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/):
-   - Uses MIT license ✅ (included in this starter)
-   - No external package dependencies
-   - Follows n8n's design guidelines
-   - Passes quality and security review
-
-2. Submit through the [n8n Creator Portal](https://creators.n8n.io/nodes)
-
-**Benefits of verification:**
-
-- Available directly in n8n Cloud
-- Discoverable in the n8n nodes panel
-- Verified badge for quality assurance
-- Increased visibility in the n8n community
-
-## Available Scripts
-
-This starter includes several npm scripts to streamline development:
-
-| Script                | Description                                                      |
-| --------------------- | ---------------------------------------------------------------- |
-| `npm run dev`         | Start n8n with your node and watch for changes (runs `n8n-node dev`) |
-| `npm run build`       | Compile TypeScript to JavaScript for production (runs `n8n-node build`) |
-| `npm run build:watch` | Build in watch mode (auto-rebuild on changes)                    |
-| `npm run lint`        | Check your code for errors and style issues (runs `n8n-node lint`) |
-| `npm run lint:fix`    | Automatically fix linting issues when possible (runs `n8n-node lint --fix`) |
-| `npm run release`     | Create a new release (runs `n8n-node release`)                   |
-
-> [!TIP]
-> These scripts use the [@n8n/node-cli](https://www.npmjs.com/package/@n8n/node-cli) under the hood. You can also run CLI commands directly, e.g., `npx n8n-node dev`.
-
-## Troubleshooting
-
-### My node doesn't appear in n8n
-
-1. Make sure you ran `npm install` to install dependencies
-2. Check that your node is listed in `package.json` under `n8n.nodes`
-3. Restart the dev server with `npm run dev`
-4. Check the console for any error messages
-
-### Linting errors
-
-Run `npm run lint:fix` to automatically fix most common issues. For remaining errors, check the [n8n node development guidelines](https://docs.n8n.io/integrations/creating-nodes/).
-
-### TypeScript errors
-
-Make sure you're using Node.js v22 or higher and have run `npm install` to get all type definitions.
+Tested with n8n version 1.0.0+
 
 ## Resources
 
-- **[n8n Node Documentation](https://docs.n8n.io/integrations/creating-nodes/)** - Complete guide to building nodes
-- **[n8n Community Forum](https://community.n8n.io/)** - Get help and share your nodes
-- **[@n8n/node-cli Documentation](https://www.npmjs.com/package/@n8n/node-cli)** - CLI tool reference
-- **[n8n Creator Portal](https://creators.n8n.io/nodes)** - Submit your node for verification
-- **[Submit Community Nodes Guide](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/)** - Verification requirements and process
+- [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
+- [Martian library documentation](https://github.com/tryfabric/martian)
+- [Notion API reference](https://developers.notion.com/reference/intro)
 
-## Contributing
+## Development
 
-Have suggestions for improving this starter? [Open an issue](https://github.com/n8n-io/n8n-nodes-starter/issues) or submit a pull request!
+```bash
+# Install dependencies
+npm install
+
+# Build the node
+npm run build
+
+# Run with hot reload
+npm run dev
+
+# Lint code
+npm run lint
+
+# Fix linting issues
+npm run lint:fix
+```
+
+## Version History
+
+### 0.1.0
+- Initial release
+- Markdown to Notion blocks conversion
+- Support for input field or direct input
+- Configurable image handling and truncation options
 
 ## License
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+[MIT](LICENSE.md)
