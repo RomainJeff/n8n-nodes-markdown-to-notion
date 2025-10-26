@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-markdown-to-notion",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A node that converts Markdown to Notion blocks using the Martian library",
 	"license": "MIT",
 	"homepage": "https://github.com/RomainJeff/n8n-nodes-markdown-to-notion",
